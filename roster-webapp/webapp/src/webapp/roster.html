@@ -1,0 +1,416 @@
+<style type="text/css" media="all">
+.siteVisitAlert
+{
+	background: #FFBAD2;
+}
+.siteVisitWarning
+{
+	background: #FFFFB8;
+}
+</style>
+
+<div class="e3_tool_header">
+	<div class="e3_tool_mode_title">
+		<span class="e3_data_header">Status: </span><span id="roster_status"></span>
+	</div>
+</div>
+<div id="roster_mode_bar" style="margin-bottom:22px;" class="e3_tool_mode_bar">
+</div>
+
+<div id="roster_adhoc" class="e3_offstage">
+	<div class="e3_dialog_section" style="font-size:13px;">
+		<div class="e3_dialog_header">Adhoc Roster Lines</div>
+		<div class="e3_stacked_edit">
+			<div class="e3_stacked_edit_header_no_icon">
+				<label for="roster_adhoc_instcode">Institution Code</label>
+			</div>
+			<div class="e3_stacked_edit_field">
+				<input type="text" id="roster_adhoc_instcode" value="" />
+			</div>
+		</div>
+		<div class="e3_stacked_edit">
+			<div class="e3_stacked_edit_header_no_icon">
+				<label for="roster_adhoc_lines">Roster Lines</label>
+			</div>
+			<div class="e3_stacked_edit_field">
+				<textarea id="roster_adhoc_lines" cols="112" rows="20" wrap="SOFT"></textarea>
+			</div>
+		</div>
+		<div class="e3_configurationFeature_body">
+			<div class="e3_configure_step">
+				To create sites for instructors who are not yet in Etudes, or are not in the Users Group, check here.
+				<br /><input type="checkbox" name="roster_adhoc_createinstructor" id="roster_adhoc_createinstructor" /><label for="roster_adhoc_createinstructor">Create Sites (for new or non-UG users)</label>
+			</div>
+			<div class="e3_configure_step">
+				To add instructors to the Users Group, check here.
+				<br /><input type="checkbox" name="roster_adhoc_addtousersgroup" id="roster_adhoc_addtousersgroup" /><label for="roster_adhoc_addtousersgroup">Add To Users Group</label>
+			</div>
+			<div class="e3_configure_step">
+				If you want to create sites with no sections, check here.
+				<br /><input type="checkbox" name="roster_adhoc_noSections" id="roster_adhoc_noSections" /><label for="roster_adhoc_noSections">Sites Without Sections</label>
+			</div>
+			<div class="e3_configure_step">
+				When you are ready, you may process these roster lines.
+				<a id="roster_process_lines" href="" title="Process Roster Lines">Process Roster Lines</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="roster_schedule" class="e3_offstage">
+	<div class="e3_configurationFeature">
+		<div class="e3_configurationFeature_frame">
+			<div class="e3_configurationFeature_title">
+				Roster Files Ready To Process
+			</div>
+		</div>
+		<div class="e3_configurationFeature_body">
+			<ul id="roster_files_list">
+			</ul>
+			<div class="e3_configure_step">
+				You may process these roster files now.
+				<a id="roster_process_files" href="" title="Process Roster Files">Process Roster Files</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="e3_configurationFeature">
+		<div class="e3_configurationFeature_frame">
+			<div class="e3_configurationFeature_title">
+				Scheduled Roster Processing (On This Server)
+			</div>
+		</div>
+		<div class="e3_configurationFeature_body">
+			<div class="e3_tool_items">
+				<table id="roster_schedule_table" class="e3_tool_item_table">
+					<thead />
+					<tbody />
+				</table>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div id="roster_sections" class="e3_offstage">
+	<div style="display:table; width: 100%; margin:0; padding:0;">
+		<div style="display:table-row">
+			<div style="display:table-cell; width:48%;">
+
+				<div class="e3_configurationFeature">
+					<div class="e3_configurationFeature_frame">
+						<div class="e3_configurationFeature_title">
+							Choose Client and Term
+						</div>
+					</div>
+					<div class="e3_configurationFeature_body">
+						<div class="e3_configure_set">
+							<div class="e3_configure_set_row">
+								<div class="e3_configure_set_entry_header">Client:</div>
+								<div class="e3_configure_set_entry_field"><select id="roster_sections_client" size="1"></select></div>
+							</div>
+							<div class="e3_configure_set_row">
+								<div class="e3_configure_set_entry_header">Term:</div>
+								<div class="e3_configure_set_entry_field"><select id="roster_sections_term" size="1"></select></div>
+							</div>
+						</div>
+						<div class="e3_configurationFeature_body">
+							<div class="e3_configure_step">
+								Load the sites and sections for this client's term:
+								<a id="roster_sections_load" href="" title="Load">Load</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="display:table-cell; width:4%;">&nbsp;</div>
+			<div style="display:table-cell; width:48%;">
+
+				<div class="e3_configurationFeature">
+					<div class="e3_configurationFeature_frame">
+						<div class="e3_configurationFeature_title">
+							Organize and Filter
+						</div>
+					</div>
+					<div class="e3_configurationFeature_body">
+						<div class="e3_configure_set">
+							<div class="e3_configure_set_row">
+								<div class="e3_configure_set_entry_header">Organize By:</div>
+								<div class="e3_configure_set_entry_field">
+									<input type="radio" name="roster_sections_mode" id="roster_sections_mode_0" value="0" /><label for="roster_sections_mode_0">Mapping</label>
+									<input type="radio" name="roster_sections_mode" id="roster_sections_mode_1" value="1" /><label for="roster_sections_mode_1">Sites</label>
+									<input type="radio" name="roster_sections_mode" id="roster_sections_mode_2" value="2" /><label for="roster_sections_mode_2">Sections</label>
+									<a style="margin-left:30px;" class="e3_toolUiLinkU" id="roster_sections_organize_help" href="" title="Help Organize">(?)</a>
+								</div>
+							</div>
+							<div class="e3_configure_set_row">
+								<div class="e3_configure_set_entry_header">Site filter:</div>
+								<div class="e3_configure_set_entry_field"><input id="roster_sections_site_filter" type="text" size="32"></div>
+							</div>
+							<div class="e3_configure_set_row">
+								<div class="e3_configure_set_entry_header">Section Filter:</div>
+								<div class="e3_configure_set_entry_field"><input id="roster_sections_section_filter" type="text" size="32"></div>
+							</div>
+						</div>
+						<div class="e3_configurationFeature_body">
+							<div class="e3_configure_step">
+								Adjust the view to new settings
+								<a id="roster_sections_filter" href="" title="View">View</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="e3_configurationFeature" style="margin:0; padding:0;">
+		<div class="e3_configurationFeature_frame">
+			<div class="e3_configurationFeature_title">
+				Results
+			</div>
+		</div>
+		<div class="e3_configurationFeature_body">
+			<div style="font-size: 13px; margin-left:30px; margin-bottom:10px;"><span id="roster_sections_results"></span><span id="roster_sections_filtered_results" style="margin-left:30px;"></span></div>
+			<div id="roster_sections_actions" class="e3_tool_actions">
+			</div>
+			<div class="e3_tool_items">
+				<table id="roster_sections_table" class="e3_tool_item_table e3_sortable_table">
+					<thead />
+					<tbody />
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="roster_sites" class="e3_offstage">
+	<div class="e3_configurationFeature">
+		<div class="e3_configurationFeature_frame">
+			<div class="e3_configurationFeature_title">
+				Select a Site
+			</div>
+		</div>
+		<div class="e3_configurationFeature_body">
+			<div class="e3_configure_set">
+				<div class="e3_configure_set_row">
+					<div class="e3_configure_set_entry_header">Site Title:</div>
+					<div class="e3_configure_set_entry_field"><input id="roster_sites_siteTitle" type="text" size="32"></div>
+				</div>
+			</div>
+			<div class="e3_configurationFeature_body">
+				<div class="e3_configure_step">
+					Load Site
+					<a id="roster_sites_loadSite" href="" title="Load">Load</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="e3_configurationFeature">
+		<div class="e3_configurationFeature_frame">
+			<div class="e3_configurationFeature_title">
+				Site Roster: <span id="roster_sites_displayingTitle"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span id="roster_sites_displayingId"></span>) <a style="margin-left:20px;padding-left:20px;background-position:left center;background-repeat:no-repeat;background-image:url('/e3/support/icons/bullet_go.png');" href="" id="roster_sites_visit" class="e3_offstage e3_toolUiLink">Visit</a>
+			</div>
+		</div>
+		<div class="e3_configurationFeature_body">
+			<div id="roster_sites_actions" class="e3_tool_actions">
+			</div>
+			<div class="e3_tool_items">
+				<table id="roster_sites_table" class="e3_tool_item_table e3_sortable_table">
+					<thead />
+					<tbody />
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="roster_sites_sections"></div>
+</div>
+
+<div id="roster_reports" class="e3_offstage">
+	<div class="e3_configurationFeature">
+		<div class="e3_configurationFeature_frame">
+			<div class="e3_configurationFeature_title">
+				Select a Report
+			</div>
+		</div>
+		<div class="e3_configurationFeature_body">
+			<div class="e3_edit_set">
+				<div class="e3_edit_set_row">
+					<div class="e3_edit_set_entry_field_radio"><input type="radio" name="roster_selectReport" id="roster_selectReport1" value="1" /></div>
+					<div class="e3_edit_set_entry_header_radio"><label for="roster_selectReport1">Visitors per Site</label></div>
+				</div>
+				<div class="e3_edit_set_row">
+					<div class="e3_edit_set_entry_field_radio"><input type="radio" name="roster_selectReport" id="roster_selectReport2" value="2" /></div>
+					<div class="e3_edit_set_entry_header_radio"><label for="roster_selectReport2">Seats per Term</label></div>
+				</div>
+				<div class="e3_edit_set_row">
+					<div class="e3_edit_set_entry_field_radio"><input type="radio" name="roster_selectReport" id="roster_selectReport3" value="3" /></div>
+					<div class="e3_edit_set_entry_header_radio"><label for="roster_selectReport3">Seats per Site</label></div>
+				</div>
+			</div>
+			<div class="e3_configure_set">
+				<div class="e3_configure_set_row">
+					<div class="e3_configure_set_entry_header">Client:</div>
+					<div class="e3_configure_set_entry_field"><select id="roster_reports_client" size="1"></select></div>
+				</div>
+				<div id="roster_reports_term_ui" class="e3_configure_set_row">
+					<div class="e3_configure_set_entry_header">Term:</div>
+					<div class="e3_configure_set_entry_field"><select id="roster_reports_term" size="1"></select></div>
+				</div>
+			</div>
+			<div class="e3_configurationFeature_body">
+				<div class="e3_configure_step">
+					Run the selected report for the selected client and term.
+					<a id="roster_reports_run" href="" title="Load">Report</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="roster_reports_report" class="e3_configurationFeature" style="margin:0; padding:0;">
+		<div class="e3_configurationFeature_frame">
+			<div class="e3_configurationFeature_title">
+				Results
+			</div>
+		</div>
+		<div class="e3_configurationFeature_body">
+			<div style="font-size: 13px; margin-left:30px; margin-bottom:10px;" id="roster_reports_results"></div>
+			<div id="roster_reports_actions" class="e3_tool_actions">
+			</div>
+			<div class="e3_tool_items">
+				<table id="roster_reports_table" class="e3_tool_item_table e3_sortable_table">
+					<thead />
+					<tbody />
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- confirm for process files -->
+<div id="roster_confirmProcessFiles" title="Confirm Process Roster Files" style="display: none;">
+	Are you sure you want to process the roster files now?
+</div>
+
+<!-- confirm for process lines -->
+<div id="roster_confirmProcessLines" title="Confirm Process Roster Lines" style="display: none;">
+	Are you sure you want to process these roster lines now?
+</div>
+
+<!-- confirm for remove section, mapping view -->
+<div id="roster_confirmRemoveSectionsMapping" title="Confirm Remove Section(s) from Site(s)" style="display: none;">
+	Are you sure you want to remove the selected section(s) from the selected site(s)?<p>All users in these sections who are not in some other section of the sites <b>will be removed from the sites</b>.
+</div>
+
+<!-- confirm for remove section, sites view -->
+<div id="roster_confirmRemoveSectionsSites" title="Confirm Remove All Sections from Site(s)" style="display: none;">
+	Are you sure you want to remove <b>all sections</b> from the selected site(s)?<p>All users in these sections <b>will be removed from the sites</b>.
+</div>
+
+<!-- confirm for remove section, sections view -->
+<div id="roster_confirmRemoveSectionsSections" title="Confirm Remove Section(s) from All Site" style="display: none;">
+	Are you sure you want to remove the selected sections(s) from <b>all sites</b>?<p>All users in these sections who are not in some other section of the sites <b>will be removed from the sites</b>.
+</div>
+
+<!-- alert after operation -->
+<div id="roster_alert_results_good" title="Results" style="display: none;">
+	<div class="e3_dialog_instructions e3_wide">Success!</div>
+	<img style="margin-right:20px;" src="support/icons/publish.png"><span id="roster_alert_results_good_msg"></span>
+</div>
+
+<!-- alert after operation -->
+<div id="roster_alert_results_bad" title="Results" style="display: none;">
+	<div class="e3_dialog_instructions e3_wide">Alert!</div>
+	<img style="margin-right:20px;" src="support/icons/error.png"><span id="roster_alert_results_bad_msg"></span>
+</div>
+
+<!-- alert for add section to site missing parameters -->
+<div id="roster_alert_addSectionSite_params" title="Fill In All Values" style="display: none;">
+	<div class="e3_dialog_instructions e3_wide">Fill in the site title and section title before pressing "Add".</div>
+</div>
+
+<!-- confirm for add section to site -->
+<div id="roster_confirmAddSectionSite" title="Confirm Add Section to Site" style="display: none;">
+	<div class="e3_dialog_instructions e3_wide">Enter the exact site title and section title.  The site must exist.  If the section exists, its current enrollment will be added to the site, otherwise the section will be created.</div>
+	<div class="e3_dialog_section">
+		<div class="e3_dialog_header">Site and Section Details</div>
+		<div class="e3_configure_set">
+			<div class="e3_configure_set_row">
+				<div class="e3_configure_set_entry_header">Site:</div>
+				<div class="e3_configure_set_entry_field"><input id="roster_addSectionSite_siteTitle" type="text" size="40" /></div>
+			</div>
+			<div class="e3_configure_set_row">
+				<div class="e3_configure_set_entry_header">Section:</div>
+				<div class="e3_configure_set_entry_field"><input id="roster_addSectionSite_sectionTitle" type="text" size="40" /></div>
+			</div>
+		</div>
+	</div>
+	Are you sure you want to add this section to this site?
+</div>
+
+<!-- confirm for remove section, sections view -->
+<div id="roster_confirmRemoveUserFromSite" title="Confirm Remove User From Site" style="display: none;">
+	Are you sure you want to remove the selected user(s) from the site?
+</div>
+
+<!-- dialog to add users to site -->
+<div id="roster_addUser" title="Add Members">
+	<div class="e3_dialog_instructions e3_wide">Add new non-student members to your site.  These will be added at the site level, not in a section, and considered official roster members.</div>
+	<div class="e3_dialog_section">
+		<div class="e3_dialog_header">Users</div>
+		<div class="e3_dialog_instructions">
+			<ul>
+				<li>Users must already exist in Etudes.</li>
+				<li>Enter the user's IID (iid@instcode format).</li>
+			</ul>
+			If you need more than one, enter them one per line.
+		</div>
+		<div class="e3_stacked_edit">
+			<div class="e3_stacked_edit_field">
+				<textarea id="roster_addUser_identifiers" cols="50" rows="4" wrap="virtual">
+				</textarea>
+			</div>
+		</div>
+	</div>
+	<div class="e3_dialog_section">
+		<div class="e3_dialog_header">Role</div>
+		<div class="e3_dialog_instructions">Select a role for the new members.</div>
+		<div>
+			<input type="radio" name="assignRole" value="Instructor" id="roster_assignRoleInstructor" />
+			<label for="roster_assignRoleInstructor">Instructor</label>
+		</div>
+		<div>
+			<input type="radio" name="assignRole" value="Teaching Assistant" id="roster_assignRoleTeachingAssistant" />
+			<label for="roster_assignRoleTeachingAssistant">Teaching Assistant</label>
+		</div>
+		<div>
+			<input type="radio" name="assignRole" value="Evaluator" id="roster_assignRoleEvaluator" />
+			<label for="roster_assignRoleStudent">Evaluator</label>
+		</div>
+		<div>
+			<input type="radio" name="assignRole" value="Observer" id="roster_assignRoleObserver" />
+			<label for="roster_assignRoleObserver">Observer</label>
+		</div>
+	</div>
+</div>
+
+<!-- alert for missing site title when loading a site -->
+<div id="roster_sites_alertMissingTitle" title="Fill In the Site Title" style="display: none;">
+	<div class="e3_dialog_instructions e3_wide">Fill in the site title before pressing "Load".</div>
+</div>
+
+<!-- alert for youtube help -->
+<div id="roster_sections_organize_help_alert"  title="About Organize" style="display: none;">
+	<div class="e3_wide">
+		How you organize the results determines what Remove feature you have.  The Add feature is the same for all organizations.
+		<ul>
+			<li>Choose <b>Mapping</b> to remove a section-in-site mapping.</li>
+			<li>Choose <b>Sites</b> to remove all sections from a site.</li>
+			<li>Choose <b>Sections</b> to remove a section from all sites that have it. </li>
+		</ul>
+	</div>
+</div>
+
+<!-- for exporting reports as csv files -->
+<div style="display: none;">
+	<a id="export_link">report</a>
+</div>
