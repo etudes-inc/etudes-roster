@@ -36,6 +36,10 @@ tool_obj =
 	],
 	terms:
 	[
+		{code: "F18", name: "Fall 2018"},
+		{code: "SU18", name: "Summer 2018"},
+		{code: "SP18", name: "Spring 2018"},
+		{code: "W18", name: "Winter 2018"},
 		{code: "F17", name: "Fall 2017"},
 		{code: "SU17", name: "Summer 2017"},
 		{code: "SP17", name: "Spring 2017"},
